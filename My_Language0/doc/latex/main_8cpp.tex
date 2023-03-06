@@ -1,0 +1,52 @@
+\hypertarget{main_8cpp}{}\doxysection{src/main.cpp File Reference}
+\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}Bigram.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_ad16ff01b10c2c541c534f506de146210}{to\+Lower}} (string \&cad)
+\begin{DoxyCompactList}\small\item\em It converts a string to lowercase. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This program reads a text (without spaces) with a undefined number of characters and a text with two characters (bigram). It finds the bigrams contained in the first text, storing them in an array of \mbox{\hyperlink{classBigram}{Bigram}}. After that, the bigrams of the array are shown in the standard output. Then it converts to uppercase the bigrams in the array that are equals to the bigram of the second text. Finally the bigrams of the array are shown again in the standard output.
+
+\begin{DoxyAuthor}{Author}
+arturoolvrs
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2 de marzo de 2023, 10\+:52 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_ad16ff01b10c2c541c534f506de146210}\label{main_8cpp_ad16ff01b10c2c541c534f506de146210}} 
+\index{main.cpp@{main.cpp}!toLower@{toLower}}
+\index{toLower@{toLower}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{toLower()}{toLower()}}
+{\footnotesize\ttfamily void to\+Lower (\begin{DoxyParamCaption}\item[{string \&}]{cad }\end{DoxyParamCaption})}
+
+
+
+It converts a string to lowercase. 
+
+This program reads a text (without spaces) with a undefined number of characters and a text with two characters (bigram). It finds the bigrams contained in the first text, storing them in an array of \mbox{\hyperlink{classBigram}{Bigram}}. After that, the bigrams of the array are shown in the standard output. Then it converts to uppercase the bigrams in the array that are equals to the bigram of the second text. Finally the bigrams of the array are shown again in the standard output. 
+\begin{DoxyParams}{Parameters}
+{\em cad} & string to convert to lowercase \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 38 of file main.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{38                          \{}
+\DoxyCodeLine{39     }
+\DoxyCodeLine{40     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<cad.length(); i++)}
+\DoxyCodeLine{41         cad.at(i)=tolower(cad.at(i));}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
