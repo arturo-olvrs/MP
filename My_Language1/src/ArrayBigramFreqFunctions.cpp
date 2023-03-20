@@ -46,7 +46,7 @@ void readArrayBigramFreq(BigramFreq array[], int dim, int &nElements){
 }
 
 
-void printArrayBigramFreq(BigramFreq array[], int nElements){
+void printArrayBigramFreq(const BigramFreq array[], int nElements){
     
     std::cout << nElements << std::endl;
     

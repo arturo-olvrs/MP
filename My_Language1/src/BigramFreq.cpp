@@ -5,8 +5,9 @@
  * @date 13 de marzo de 2023, 18:10
  */
 
-#include "BigramFreq.h"
 #include <cstring>
+#include "BigramFreq.h"
+
 
 BigramFreq::BigramFreq():
     _frequency(0), _bigram("__") {}
@@ -16,6 +17,7 @@ const Bigram& BigramFreq::getBigram() const{
 }
 
 int BigramFreq::getFrequency() const{
+    
     return _frequency;
 }
 
