@@ -15,9 +15,16 @@ void readArrayBigramFreq(BigramFreq array[], int dim, int &nElements){
     if (nElements > dim){
         
         std::cerr << nElements << " do not fit in the array. "
-                  << dim << " elements stored.";
+                  << dim << " elements read.";
         
         nElements = dim;
+    }
+    else if (nElements < 0){
+        
+        std::cerr << nElements << " negative. "
+                  << "0" << " elements read.";
+        
+        nElements = 0;
     }
     
     char first, second;
