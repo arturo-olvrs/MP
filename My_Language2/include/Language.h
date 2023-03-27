@@ -1,15 +1,8 @@
-/*
- * Metodología de la Programación: Language2
- * Curso 2022/2023
- */
-
 /** 
  * @file Language.h
- * @author Silvia Acid Carrillo <acid@decsai.ugr.es>
- * @author Andrés Cano Utrera <acu@decsai.ugr.es>
- * @author Luis Castillo Vidal <L.Castillo@decsai.ugr.es>
+ * @author Arturo Olivares Martos <2004.olivares@gmail.com>
  * 
- * Created on 29 January 2023, 11:00
+ * @date 27 de Marzo de 2023, 17:49
  */
 
 #ifndef LANGUAGE_H
@@ -44,21 +37,21 @@ public:
      * @param numberBigrams The number of bigrams to use in this Language.
      * Input parameter
      */
-    Language(int numberBigrams);
+    Language(const int numberBigrams);
 
     /**
      * @brief Returns the identifier of this language object. 
      * Query method.
      * @return A const reference to the identifier of this language object.
      */
-    std::string getLanguageId();
+    const std::string& getLanguageId() const;
 
     /**
      * @brief Sets a new identifier for this language object. 
      * Modifier method.
      * @param id The new identifier. Input parameter 
      */
-    void setLanguageId(std::string id);
+    void setLanguageId(const std::string id);
 
 
     /**
@@ -70,7 +63,7 @@ public:
      * given index is not valid
      * @return A const reference to the BigramFreq at the given position
      */
-    BigramFreq at(int index); 
+    const BigramFreq& at(const int index) const; 
 
     /**
      * @brief Gets a reference to the BigramFreq at the given position of the 
@@ -81,14 +74,14 @@ public:
      * given index is not valid
      * @return A reference to the BigramFreq at the given position
      */
-    BigramFreq at(int index); 
+    BigramFreq& at(const int index); 
 
     /**
      * @brief Gets the number of BigramFreq objects. 
      * Query method
      * @return The number of BigramFreq objects
      */
-    int getSize();
+    int getSize() const;
     
     /**
      * @brief Searchs the given bigram in the list of bigrams in this
@@ -103,7 +96,7 @@ public:
      * @return If found, it returns the position where the bigram 
      * was found. If not, it returns -1
      */
-    int findBigram(Bigram bigram);
+    int findBigram(const Bigram& bigram) const;
 
     /**
      * @brief Obtains a string with the following content:
@@ -114,7 +107,7 @@ public:
      * @return A string with the number of bigrams and the list of pairs of
      * bigram-frequency in the object
      */
-    std::string toString();
+    std::string toString() const;
 
     /**
      * @brief Sort the vector of BigramFreq in decreasing order of frequency.
@@ -134,7 +127,7 @@ public:
      * if the given file cannot be opened or if an error occurs while writing
      * to the file
      */
-    void save(char fileName[]);
+    void save(const char fileName[]) const;
 
     /**
      * @brief Loads into this object the Language object stored in the given 
@@ -151,7 +144,7 @@ public:
      * @throw throw std::invalid_argument Throws a std::invalid_argument if
      * an invalid magic string is found in the given file
      */
-    void load(char fileName[]);
+    void load(const char fileName[]);
     
     /**
      * @brief Appends a copy of the given BigramFreq to this Language object.

@@ -1,15 +1,8 @@
-/*
- * Metodología de la Programación: Language2
- * Curso 2022/2023
- */
-
 /** 
- * @file Bigram.h
- * @author Silvia Acid Carrillo <acid@decsai.ugr.es>
- * @author Andrés Cano Utrera <acu@decsai.ugr.es>
- * @author Luis Castillo Vidal <L.Castillo@decsai.ugr.es>
- * 
- * Created on 2 February 2023, 11:00
+ * @file   Bigram.h
+ * @author Arturo Olivares Martos <2004.olivares@gmail.com>
+ *
+ * @date 2 de marzo de 2023, 10:52
  */
 
 #ifndef BIGRAM_H
@@ -54,7 +47,7 @@ public:
      * 
      * @param text the text for the bigram. Input parameter 
      */
-    Bigram(char text[]);
+    Bigram(const char text[]);
     
     /**
      * @brief Obtains a copy of the text of this bigram as a string object
@@ -112,4 +105,3 @@ private:
 bool isValidCharacter(char character, const std::string& validCharacters);
 
 #endif /* BIGRAM_H */
-

@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>include/ArrayBigramFreqFunctions.h</itemPath>
       <itemPath>include/Bigram.h</itemPath>
       <itemPath>include/BigramFreq.h</itemPath>
       <itemPath>include/Language.h</itemPath>
@@ -15,6 +16,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>src/ArrayBigramFreqFunctions.cpp</itemPath>
+      <itemPath>src/Bigram.cpp</itemPath>
+      <itemPath>src/BigramFreq.cpp</itemPath>
       <itemPath>src/Language.cpp</itemPath>
       <itemPath>src/main.cpp</itemPath>
     </logicalFolder>
@@ -46,11 +50,19 @@
           </incDir>
         </ccTool>
       </compileType>
+      <item path="include/ArrayBigramFreqFunctions.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/Bigram.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/BigramFreq.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Language.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/ArrayBigramFreqFunctions.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Bigram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/BigramFreq.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Language.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -78,11 +90,19 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="include/ArrayBigramFreqFunctions.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/Bigram.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/BigramFreq.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Language.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/ArrayBigramFreqFunctions.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Bigram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/BigramFreq.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Language.cpp" ex="false" tool="1" flavor2="0">
       </item>
