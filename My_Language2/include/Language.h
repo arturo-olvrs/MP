@@ -160,7 +160,7 @@ public:
      * Modifier method
      * @param bigramFreq The BigramFreq to append to this object. Input parameter
      */
-    void append(BigramFreq bigramFreq);
+    void append(const BigramFreq& bigramFreq);
     
     /**
      * @brief Appends to this Language object, the list of pairs  
@@ -170,7 +170,7 @@ public:
      * Modifier method
      * @param language A Language object. Input parameter
      */
-    void join(Language language);
+    void join(const Language& language);
     
 private:
     static const int DIM_VECTOR_BIGRAM_FREQ = 2000; ///< The capacity of the array _vectorBigramFreq

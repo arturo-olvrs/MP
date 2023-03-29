@@ -68,6 +68,81 @@ int Language::getSize() const{
     return _size;
 }
 
+int Language::findBigram(const Bigram& bigram) const{
+    
+    int index_searched = -1;
+    
+    int pos=0;
+    while ((pos < _size) && (index_searched == -1))
+
+        if (_vectorBigramFreq[pos].getBigram().toString() == bigram.toString())
+            index_searched = pos;
+    
+        else pos++;
+    
+    return index_searched;
+}
+
+
+std::string Language::toString() const{
+    
+    string output;
+    
+    output += to_string(_size) + "\n";
+    
+    for (int i=0; i<_size; i++)
+        output += _vectorBigramFreq[i].toString() + "\n";
+    
+    return(output);
+}
+
+
+void Language::sort(){
+    
+    // Insertion Algorithm
+    
+    for (int left = 1; left < _size; left++){
+    
+        BigramFreq to_insert = _vectorBigramFreq[left];
+    
+        int i = left;
+        while (( i > 0 ) && !to_insert.isLower(_vectorBigramFreq[i-1]) ) {
+            
+            // Displaces to the right the lower values
+            _vectorBigramFreq[i] = _vectorBigramFreq[i-1];
+            
+            i--;
+        }
+        
+        _vectorBigramFreq[i] = to_insert;
+    }
+}
+
+void Language::save(const char fileName[]) const{
+    
+    ofstream outputStream;
+    
+    outputStream.open(fileName);
+    
+    if (!outputStream){
+        
+        string fileName_str = fileName;
+        string err;
+        err += "void Language::save(const char fileName[]) const";
+        err += "The file " + fileName_str + " couldn't be oppened";
+        
+        throw ios_base::failure(err);
+    }
+    
+    outputStream << MAGIC_STRING_T << endl;
+    outputStream << _languageId << endl;
+    
+    outputStream << toString();
+    
+    outputStream.close();
+}
+
+
 void Language::load(const char fileName[]){
     
     ifstream inputStream;
@@ -75,9 +150,11 @@ void Language::load(const char fileName[]){
     inputStream.open(fileName);
     if(!inputStream){
         
+        string fileName_str = fileName;
+        
         string err;
         err += "void Language::load(const char fileName[]) const\n";
-        err += "The file couldn't be oppened";
+        err += "The file " + fileName_str + " couldn't be oppened";
         
         throw ios_base::failure(err);
     }
@@ -117,6 +194,7 @@ void Language::load(const char fileName[]){
     // Reads each bigram_freq
     BigramFreq BigramFreq_aux;
     Bigram Bigram_aux;
+    _size = 0;
     
     for (int i=0; i <num_bigramFreqs; i++){
         
@@ -132,7 +210,8 @@ void Language::load(const char fileName[]){
         
         
         // Adds the Bigram_Freq_aux
-        //append(BigramFreq_aux);
+        _vectorBigramFreq[i] = BigramFreq_aux;
+        _size ++;
     }
     
     
@@ -142,31 +221,35 @@ void Language::load(const char fileName[]){
 }
 
 
-int Language::findBigram(const Bigram& bigram) const{
+void Language::append(const BigramFreq& bigramFreq){
     
-    return 0;
+    int index = findBigram(bigramFreq.getBigram());
     
-}
-
-
-std::string Language::toString() const{
-    
-    return "Hola";
-}
-
-void Language::save(const char fileName[]) const{
-    
-    ofstream outputStream;
-    
-    outputStream.open(fileName);
-    
-    if (!outputStream){
-        string err;
-        err += "void Language::save(const char fileName[]) const";
-        err += "The file couldn't be oppened";
+    if (index == -1){ // Not found
         
-        throw ios_base::failure(err);
+        if (_size >= DIM_VECTOR_BIGRAM_FREQ){ // Array full. It does not fit
+            
+            string err;
+            err += "void Language::append(const BigramFreq& bigramFreq)\n";
+            err += "The array is full. It does not fit";
+            
+            throw out_of_range (err);
+        }
+        
+        _vectorBigramFreq[_size] = bigramFreq;
+        _size ++;
     }
     
+    else { // Found
+        
+        int new_frequency = _vectorBigramFreq[index].getFrequency() + bigramFreq.getFrequency();
+        _vectorBigramFreq[index].setFrequency(new_frequency);
+    }
+}
+
+
+void Language::join(const Language& language){
     
+    for (int i=0; i < language._size; i++)
+        append(language._vectorBigramFreq[i]);
 }

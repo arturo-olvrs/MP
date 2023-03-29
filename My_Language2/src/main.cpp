@@ -18,6 +18,7 @@
  */
 
 #include <iostream>
+#include "Language.h"
 
 using namespace std;
 
@@ -39,5 +40,25 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
+    
+    Language language_read;     // The language readed in each file
+    Language language_joined;   // The laguage generated that is going to be saved.
+    
+    language_joined.load(argv[1]);  // The first language is loaded to set the language.
+    
+    
+    for (int i=2; i < argc-1; i++){
+        
+        language_read.load(argv[i]);
+        
+        if(language_read.getLanguageId() == language_joined.getLanguageId())
+            language_joined.join(language_read);
+        
+    }  
+    
+    language_joined.sort();
+    language_joined.save(argv[argc-1]);
+    
+    return 0;
 }
 
