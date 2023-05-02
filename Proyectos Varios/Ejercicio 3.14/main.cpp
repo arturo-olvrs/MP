@@ -1,6 +1,7 @@
 /* 
  * @file:   main.cpp
  * @author: Arturo Olivares Martos <2004.olivares@gmail.com>
+ * @brief Ejercicio 14 de la relación 3.
  *
  * @date 2 de Mayo de 2023, 1:20 PM
  */
