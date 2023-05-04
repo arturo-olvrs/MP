@@ -68,6 +68,15 @@ Punto Poligono::getVertice(int index) const{
 
 void Poligono::redimensionar(int incremento){
     
+    if (incremento < 0){
+        
+        std::string err;
+        err += "void Poligono::redimensionar (int incremento)\n";
+        err += "incremento must be >= 0";
+        
+        throw std::invalid_argument (err);
+    }
+    
     Punto* arr_aux = new Punto[_capacidad + incremento];
     
     for (int i=0; i<_nVertices; i++)
