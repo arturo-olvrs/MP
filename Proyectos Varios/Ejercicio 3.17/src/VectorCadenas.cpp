@@ -103,19 +103,25 @@ void VectorCadenas::mostrar(std::ostream& flujo) const{
 void VectorCadenas::ordenar(int (*comparar) (const char*, const char*)){
     
     // Método de ordenación mediante selección
-    int min_o_max;
+    int min;
     char aux[NCARACTERES]; // Para intercambiar
     for (int left=0; left<_ncads; left++){
         
-        min_o_max = left;
+        min = left;
         for (int i=left+1; i<_ncads; i++){
-            if ( (*comparar)(_cadenas[min_o_max], _cadenas[i]) >= 0 )
-                min_o_max = i;
+            if ( (*comparar)(_cadenas[min], _cadenas[i]) >= 0 )
+                min = i;
         }
         
         // Intercambio
+        char* aux = _cadenas[min];
+        _cadenas[min]=_cadenas[left];
+        _cadenas[left]=aux;
+        
+        /* Esto no es correcto. Intercambia los valores, no las direcciones de memoria
         strcpy(aux,_cadenas[min_o_max]);
         strcpy(_cadenas[min_o_max], _cadenas[left]);
         strcpy(_cadenas[left], aux);
+        */
     }
 }
