@@ -9,9 +9,9 @@ HELPTEXT='# Script runZipProject.sh   \n
 '
 
 # Load configuration & moves to the project root folder
-if [ -d ../../Scripts ]
+if [ -d ../../../Scripts ]
 then
-    source ../../Scripts/doConfig.sh $*
+    source ../../../Scripts/doConfig.sh $*
     runZipProject
 else
     echo "Unable to find Scripts library"

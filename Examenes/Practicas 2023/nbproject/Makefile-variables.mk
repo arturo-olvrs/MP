@@ -12,16 +12,16 @@ CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
 CND_ARTIFACT_NAME_Debug=parcial
 CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/parcial
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=parciala.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/parciala.tar
+CND_PACKAGE_NAME_Debug=practicas2023.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/practicas2023.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=parciala
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/parciala
+CND_ARTIFACT_NAME_Release=practicas_2023
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/practicas_2023
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=parciala.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/parciala.tar
+CND_PACKAGE_NAME_Release=practicas2023.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/practicas2023.tar
 #
 # include compiler specific variables
 #

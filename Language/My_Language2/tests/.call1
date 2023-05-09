@@ -1,0 +1,1 @@
+Test #1 [tests//10bigrams+10bigrams.test] valgrind --leak-check=full  dist/Debug/GNU-Linux/my_language2  data/10bigrams.bgr data/10bigrams.bgr tests/output/10bigrams+10bigrams.bgr

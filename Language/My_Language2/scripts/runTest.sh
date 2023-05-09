@@ -1,4 +1,4 @@
-#!  /bin/bash
+#!/bin/bash
 # Author: Luis Castillo Vidal L.Castillo@decsai.ugr.es
 # Pass test file $1
 
@@ -121,15 +121,15 @@ function doTest  {
 # Main Body
 #
 # Load configuration & moves to the project root folder
-if [ -d ../Scripts ]
+if [ -d ../../Scripts ]
 then
-    source ../Scripts/doConfig.sh
-       source ../Scripts/ansiterminal.sh
-else
-   if [ -d ../../Scripts ]
-   then
-       source ../../Scripts/doConfig.sh
+    source ../../Scripts/doConfig.sh
        source ../../Scripts/ansiterminal.sh
+else
+   if [ -d ../../../Scripts ]
+   then
+       source ../../../Scripts/doConfig.sh
+       source ../../../Scripts/ansiterminal.sh
    else
     printf "\n${RED}Unable to find Scripts library${WHITE}\n\n"
     exit
@@ -197,7 +197,8 @@ then
        printf "${RED} Failed build${WHITE}\n"
         exit
 else
-BINARY=$(grep "g++[^ ]*[ \t]*-o" $MAKEOUT | sed "s/^.*-o //;s/ build.*$//")
+#BINARY=$(grep "g++[^ ]*[ \t]*-o" $MAKEOUT | sed "s/^.*-o //;s/ build.*$//")
+BINARY=$(grep "g++ .* -o dist/" $MAKEOUT | sed "s/^.*-o //;s/ build.*$//")
 printf "${GREEN}"$BINARY"${WHITE}\n"
 fi
 # Execute tests

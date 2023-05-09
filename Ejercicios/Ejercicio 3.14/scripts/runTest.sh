@@ -121,15 +121,15 @@ function doTest  {
 # Main Body
 #
 # Load configuration & moves to the project root folder
-if [ -d ../Scripts ]
+if [ -d ../../Scripts ]
 then
-    source ../Scripts/doConfig.sh
-       source ../Scripts/ansiterminal.sh
-else
-   if [ -d ../../Scripts ]
-   then
-       source ../../Scripts/doConfig.sh
+    source ../../Scripts/doConfig.sh
        source ../../Scripts/ansiterminal.sh
+else
+   if [ -d ../../../Scripts ]
+   then
+       source ../../../Scripts/doConfig.sh
+       source ../../../Scripts/ansiterminal.sh
    else
     printf "\n${RED}Unable to find Scripts library${WHITE}\n\n"
     exit

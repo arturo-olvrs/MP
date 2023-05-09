@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=examenlab2021
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/examenlab2021
+CND_ARTIFACT_NAME_Debug=practicas_2021
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/practicas_2021
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=examenlab2021.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/examenlab2021.tar
+CND_PACKAGE_NAME_Debug=practicas2021.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/practicas2021.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=examenlab2021
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/examenlab2021
+CND_ARTIFACT_NAME_Release=practicas_2021
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/practicas_2021
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=examenlab2021.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/examenlab2021.tar
+CND_PACKAGE_NAME_Release=practicas2021.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/practicas2021.tar
 #
 # include compiler specific variables
 #

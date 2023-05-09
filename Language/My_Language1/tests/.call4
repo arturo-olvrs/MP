@@ -1,0 +1,1 @@
+Test #4 [tests//BodasdeSangre_FedericoGarciaLorca_bigrams.test] valgrind --leak-check=full  dist/Debug/GNU-Linux/my_language1  < tests/BodasdeSangre_FedericoGarciaLorca_bigrams.test

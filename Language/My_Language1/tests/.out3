@@ -1,0 +1,51 @@
+==6646== Memcheck, a memory error detector
+==6646== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6646== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==6646== Command: /home/arturoolvrs/Desktop/RepositorioMP/Language/My_Language1/dist/Debug/GNU-Linux/my_language1
+==6646== 
+36
+DE 822
+DO 401
+CO 369
+DA 288
+CA 276
+CI 268
+DI 203
+HA 190
+BA 181
+CE 166
+CU 157
+BR 156
+GU 91
+HO 91
+GO 87
+GA 76
+BI 70
+FU 69
+FA 62
+HI 59
+GR 53
+HE 47
+BE 42
+BU 41
+FI 39
+GI 38
+DR 37
+DU 37
+CR 36
+FE 34
+BO 28
+GE 26
+HU 23
+FO 19
+FR 15
+CT 11
+==6646== 
+==6646== HEAP SUMMARY:
+==6646==     in use at exit: 0 bytes in 0 blocks
+==6646==   total heap usage: 3 allocs, 3 frees, 80,896 bytes allocated
+==6646== 
+==6646== All heap blocks were freed -- no leaks are possible
+==6646== 
+==6646== For lists of detected and suppressed errors, rerun with: -s
+==6646== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
