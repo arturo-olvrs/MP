@@ -1,2 +1,2 @@
 # Language
-Repositorio de las prácticas de MP. Programa Language
+Repositorio de las prácticas de la asignatura Metodología de la Programación.
