@@ -10,6 +10,11 @@
  */
 
 
+#include <cstring>
+#include "BigramCounter.h"
+using namespace std;
+
+
 
 /**
  * Shows help about the use of this program in the given output stream
@@ -35,6 +40,53 @@ void showEnglishHelp(ostream& outputStream) {
  * @return 0 If there is no error; a value > 0 if error
  */
 int main(int argc, char *argv[]) {
- 
+    
+    if (argc <=2){ // Not enough parameters
+        showEnglishHelp(cerr);
+        return 1;
+    }
+    
+    
+    int num_file = 1;
+    
+    BigramCounter builder;
+    builder.calculateFrequencies(argv[num_file++]);
+    
+    Language to_classify;
+    to_classify = builder.toLanguage();
+    
+    
+    // Impossible values to search for the min
+    int num_lang_detected = -1;
+    double min_distance = 2; // Distance $\in [0,1]$
+    std::string lang_detected = "unknown";
+    
+    Language aux;
+    
+    // Iterate over each file
+    for (num_file; num_file < argc; num_file++){
+        
+        aux.load(argv[num_file]);
+        double distance = to_classify.getDistance(aux);
+        
+        
+        // If found a new min, it is updated
+        if (distance < min_distance){
+            
+            min_distance = distance;
+            num_lang_detected = num_file;
+            lang_detected = aux.getLanguageId();
+           
+        }
+    } // for file
+    
+    
+    // Prints the final decision
+    cout << "Final decision: "
+         << "language " << lang_detected
+         << " with a distance of " << min_distance << endl;
+    
+    
+    return 0;
 }
 

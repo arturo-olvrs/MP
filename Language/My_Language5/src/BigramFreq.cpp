@@ -59,11 +59,13 @@ void BigramFreq::deserialize(std::istream& inputStream){
 
 std::ostream& operator<<(std::ostream& os, const BigramFreq& bigramFreq){
     
+    return os;
 }
 
 
 std::istream& operator>>(std::istream& is, BigramFreq& bigramFreq){
     
+    return is;
 }
 
 

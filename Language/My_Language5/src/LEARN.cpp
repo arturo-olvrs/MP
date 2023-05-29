@@ -9,6 +9,9 @@
  * @date 28 de Marzo de 2023, 17:49
  */
 
+#include<cstring>
+#include "BigramCounter.h"
+using namespace std;
 
 /**
  * Shows help about the use of this program in the given output stream
@@ -37,7 +40,101 @@ void showEnglishHelp(ostream& outputStream) {
  * @return 0 If there is no error; a value > 0 if error
  */
 
-int main(int argc, char *argv[]) {   
+int main(int argc, char *argv[]) {  
+    
+    
+    // Default values
+    char mode = 't';      // Flag for writing in binary mode.
+    std::string language = "unknown";
+    std::string output = "output.bgr";
+    
+    
+    // Number of the parameter being checked
+    int num_param = 1;
+    
+    
+    bool opt_twice = false; // Flag. Checks if an option has been used twice
+    bool not_enough_params = false; // Flag. Checks that there are enough parameters.
+    
+    // Flags for options already used;
+    bool bt_opt = false;
+    bool name_opt = false;
+    bool language_opt = false;
+    
+    while (argv[num_param][0] == '-' && !opt_twice && !not_enough_params){
+        
+        // The next parameter must exist. At the end, it will be, at least, a file.
+        not_enough_params = argc <= num_param+1;
+        
+        ///// Checks bt_opt /////
+        if (    (strcmp(argv[num_param], "-b") == 0) ||
+                (strcmp(argv[num_param], "-t") == 0)    ) {
+            
+            if (!bt_opt){ // Option yet not used
+                bt_opt = true;
+                mode = argv[num_param][1];
+                num_param++;
+            }
+            else opt_twice = true;
+        } // bt_opt checked
+        
+        
+        ///// Checks name_opt /////
+        else if (strcmp(argv[num_param], "-o") == 0) {
+            
+            if (!name_opt){ // Option yet not used
+                
+                not_enough_params = argc <= ++num_param;
+
+                output = argv[num_param];
+                num_param++;
+            }
+            else opt_twice = true;
+        } // name_opt checked
+        
+        
+        ///// Checks laguage_opt /////
+        else if (strcmp(argv[num_param], "-l") == 0) {
+            
+            if (!language_opt){ // Option yet not used
+                
+                not_enough_params = argc <= ++num_param;
+
+                language = argv[num_param];
+                num_param++;
+            }
+            else opt_twice = true;
+        } // laguage_opt checked
+        
+        
+    } // options checked.   while (argv[num_param][0] == '-' && !opt_twice && !not_enough_params)
+    
+    
+    
+    if (opt_twice || not_enough_params){
+        showEnglishHelp(cerr);
+        return 1;
+    }
+    
+    
+    // num_param is the first .bgr to work on;
+    
+    
+    BigramCounter builder;
+    
+    Language lang;
+    lang.setLanguageId(language);
+    
+    for (int num_file = num_param; num_file < argc; num_file++){
+        
+        builder.calculateFrequencies(argv[num_file]);
+        lang += builder.toLanguage();
+    }
+    
+    lang.save(output.c_str(), mode);
+    
+    
+    return 0;
 
 }
 

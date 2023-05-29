@@ -94,9 +94,11 @@ bool isValidCharacter(char character, const std::string& validCharacters){
 
 std::ostream& operator<<(std::ostream& os, const Bigram& bigram){
     
+    return os;
 }
 
 
 std::istream& operator>>(std::istream& is, Bigram& bigram){
     
+    return is;
 }

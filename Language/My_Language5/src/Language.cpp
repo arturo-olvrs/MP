@@ -181,7 +181,7 @@ void Language::sort(){
     }
 }
 
-void Language::save(const char fileName[]) const{
+void Language::save(const char fileName[], char mode) const{
     
     ofstream outputStream;
     
@@ -367,12 +367,14 @@ void Language::reallocate(int newSize){
 }
 
 
-std::ostream& Language::operator<<(std::ostream& os, const Language& language){
+std::ostream& operator<<(std::ostream& os, const Language& language){
     
+    return os;
 }
 
 
-std::istream& Language::operator>>(std::istream& is, Language& language){
+std::istream& operator>>(std::istream& is, Language& language){
     
+    return is;
 }
 

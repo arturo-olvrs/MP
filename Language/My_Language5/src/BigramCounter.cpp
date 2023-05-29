@@ -24,13 +24,13 @@
 const char* const BigramCounter::DEFAULT_VALID_CHARACTERS="abcdefghijklmnopqrstuvwxyz\xE0\xE1\xE2\xE3\xE4\xE5\xE6\xE7\xE8\xE9\xEA\xEB\xEC\xED\xEE\xEF\xF0\xF1\xF2\xF3\xF4\xF5\xF6\xF8\xF9\xFA\xFB\xFC\xFD\xFE\xFF";
 
 
-BigramCounter::BigramCounter(const std::string& validChars = DEFAULT_VALID_CHARACTERS){
+BigramCounter::BigramCounter(const std::string& validChars){
     
     
     _validCharacters = validChars;
     
     
-    int nChars = strlen(validChars);
+    int nChars = validChars.length();
     
     
     // Allocates memory for the matrix;
@@ -38,8 +38,10 @@ BigramCounter::BigramCounter(const std::string& validChars = DEFAULT_VALID_CHARA
     
     // Sets to zero.
     for (int fil=0; fil<nChars; fil++)
-        for (int col=0; col<nChars; col++)
-            this->(fil,col)=0;
+        for (int col=0; col<nChars; col++){
+            (fil,col) = 0;
+        }
+            
 }
 
 
@@ -57,7 +59,7 @@ BigramCounter::BigramCounter(const BigramCounter& orig){
     // Copies the orig in *this.
     for (int fil=0; fil<nChars; fil++)
         for (int col=0; col<nChars; col++)
-            this->(fil,col) = orig(fil, col);
+            (fil,col) = orig(fil, col);
 }
 
 
@@ -69,7 +71,7 @@ BigramCounter::~BigramCounter(){
 
 int BigramCounter::getSize() const{
     
-    return strlen(_validCharacters);
+    return _validCharacters.length();
 }
 
 
@@ -81,7 +83,7 @@ int BigramCounter::getNumberActiveBigrams() const{
     
     for (int fil=0; fil<nChars; fil++)
         for (int col=0; col<nChars; col++)
-            if (this->(fil,col) > 0)
+            if ((fil,col) > 0)
                 nActive ++;
     
     return nActive;
@@ -98,7 +100,7 @@ bool BigramCounter::setFrequency(const Bigram& bigram, int frequency){
                  (index_2 != std::string::npos);
     
     if (found)
-        this->(index_1, index_2) = frequency;
+        (index_1, index_2) = frequency;
     
     return found;
 }
@@ -120,7 +122,7 @@ void BigramCounter::increaseFrequency(const Bigram& bigram, int frequency){
         throw std::invalid_argument (err);
     }
     else
-        this->(index_1, index_2) += frequency;
+        (index_1, index_2) += frequency;
 }
 
 
@@ -140,7 +142,7 @@ BigramCounter& BigramCounter::operator=(const BigramCounter& orig){
         // Copies the orig in *this.
         for (int fil=0; fil<nChars; fil++)
             for (int col=0; col<nChars; col++)
-                this->(fil,col) = orig(fil, col);
+                (fil,col) = orig(fil, col);
     }
     
     
@@ -152,15 +154,15 @@ BigramCounter& BigramCounter::operator=(const BigramCounter& orig){
 BigramCounter& BigramCounter::operator+=(const BigramCounter& rhs){
     
     
-    if (this->_validCharacters == rhs->_validCharacters){
-        int nChars = rhs->getSize();
+    if (this->_validCharacters == rhs._validCharacters){
+        int nChars = rhs.getSize();
         
         
         // Both have the same matrix with different frequencies.
         for (int fil=0; fil<nChars; fil++)
             for (int col=0; col<nChars; col++)
 
-                this->(fil, col) += rhs(fil, col);
+                (fil, col) += rhs(fil, col);
             
     } // if (this->_validCharacters == rhs->_validCharacters)
             
@@ -169,7 +171,7 @@ BigramCounter& BigramCounter::operator+=(const BigramCounter& rhs){
 }
 
 
-void BigramCounter::calculateFrequencies(const char*& fileName){
+void BigramCounter::calculateFrequencies(const char* fileName){
     
     
     // Opening the file
@@ -186,6 +188,9 @@ void BigramCounter::calculateFrequencies(const char*& fileName){
         
         throw std::ios_base::failure(err);
     }
+    
+    // Cleans the matrix
+    this->clean();
     
     
     // Reading the file
@@ -243,7 +248,7 @@ void BigramCounter::calculateFrequencies(const char*& fileName){
 
 Language BigramCounter::toLanguage() const{
     
-    Language lang();
+    Language lang;
     
     int nChars = this->getSize();
     
@@ -257,7 +262,7 @@ Language BigramCounter::toLanguage() const{
             bigram_aux.at(1) = this->_validCharacters.at(col);
             
             bigramFreq_aux.setBigram(bigram_aux);
-            bigramFreq_aux.setFrequency(this->(fil, col));
+            bigramFreq_aux.setFrequency((fil, col));
             
             lang.append(bigramFreq_aux);
         }
@@ -293,6 +298,17 @@ void BigramCounter::deallocate(){
     
     _frequency = nullptr;
     _validCharacters = "";
+}
+
+
+void BigramCounter::clean(){
+        
+    int nChars = this->getSize();
+    
+    // Sets to zero.
+    for (int fil=0; fil<nChars; fil++)
+        for (int col=0; col<nChars; col++)
+            (fil,col)=0;
 }
 
 
