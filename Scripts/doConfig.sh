@@ -1,4 +1,4 @@
-#!/bin/bash
+f#!/bin/bash
 # Author: Luis Castillo Vidal L.Castillo@decsai.ugr.es
 VERSION=1.0
 TOKEN="~~Dr.M~~"
