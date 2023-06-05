@@ -46,6 +46,14 @@ CND_ARTIFACT_PATH_CLASSIFY=dist/CLASSIFY/GNU-Linux/CLASSIFY
 CND_PACKAGE_DIR_CLASSIFY=dist/CLASSIFY/GNU-Linux/package
 CND_PACKAGE_NAME_CLASSIFY=mylanguage5.tar
 CND_PACKAGE_PATH_CLASSIFY=dist/CLASSIFY/GNU-Linux/package/mylanguage5.tar
+# TESTS configuration
+CND_PLATFORM_TESTS=GNU-Linux
+CND_ARTIFACT_DIR_TESTS=dist/TESTS/GNU-Linux
+CND_ARTIFACT_NAME_TESTS=my_language5
+CND_ARTIFACT_PATH_TESTS=dist/TESTS/GNU-Linux/my_language5
+CND_PACKAGE_DIR_TESTS=dist/TESTS/GNU-Linux/package
+CND_PACKAGE_NAME_TESTS=mylanguage5.tar
+CND_PACKAGE_PATH_TESTS=dist/TESTS/GNU-Linux/package/mylanguage5.tar
 #
 # include compiler specific variables
 #

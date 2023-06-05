@@ -5,7 +5,9 @@
  */
 
 
+#include <iostream>
 #include <fstream>
+#include <math.h>       /* fabs */
 #include "Language.h"
 #include "BigramFreq.h"
 
@@ -113,20 +115,25 @@ double Language::getDistance(const Language& otherLanguage) const{
     }
     
     double dist = 0;
-    
-    
+
     for (int i=0; i<_size; i++){
         
         int rank_this = i; // = findBigram(_vectorBigramFreq[i]);
         
         int rank_other = otherLanguage.findBigram(_vectorBigramFreq[i].getBigram());
+        
+        // cout << rank_this << " " << rank_other << endl;
         if (rank_other == -1) // It is not found in otherLanguage
             rank_other = _size;
         
-        dist += abs(rank_this - rank_other);
+        dist += fabs(rank_this - rank_other);
     }
     
-    dist /= _size*_size;
+    // std::cout << dist << std::endl;
+    
+    dist /= (_size*_size);
+    
+    // std::cout << dist << std::endl;
     
     return dist;
 }
@@ -151,7 +158,8 @@ std::string Language::toString() const{
     
     string output;
     
-    output += to_string(_size) + "\n";
+    output += this->getLanguageId() + "\n";
+    output += to_string(this->getSize()) + "\n";
     
     for (int i=0; i<_size; i++)
         output += _vectorBigramFreq[i].toString() + "\n";
@@ -183,26 +191,55 @@ void Language::sort(){
 
 void Language::save(const char fileName[], char mode) const{
     
-    ofstream outputStream;
-    
-    outputStream.open(fileName);
-    
-    if (!outputStream){
+    if (mode == 'b'){
         
-        string fileName_str = fileName;
-        string err;
-        err += "void Language::save(const char fileName[]) const";
-        err += "The file " + fileName_str + " couldn't be oppened";
+        ofstream outputStream;
+    
+        outputStream.open(fileName, ios::binary|ios::out);
+
+        if (!outputStream){
+
+            string fileName_str = fileName;
+            string err;
+            err += "void Language::save(const char fileName[]) const";
+            err += "The file " + fileName_str + " couldn't be oppened";
+
+            throw ios_base::failure(err);
+        }
+
+        outputStream << MAGIC_STRING_B << endl;
+        outputStream << _languageId << endl;
+        outputStream << _size << endl;
         
-        throw ios_base::failure(err);
-    }
+        for (int i=0; i<_size; i++)
+            this->at(i).serialize(outputStream);
+
+        outputStream.close();
+        
+    } // mode == b
     
-    outputStream << MAGIC_STRING_T << endl;
-    outputStream << _languageId << endl;
+    else if (mode == 't'){
+        
+        ofstream outputStream;
     
-    outputStream << this->toString();
-    
-    outputStream.close();
+        outputStream.open(fileName, ios::out);
+
+        if (!outputStream){
+
+            string fileName_str = fileName;
+            string err;
+            err += "void Language::save(const char fileName[]) const";
+            err += "The file " + fileName_str + " couldn't be oppened";
+
+            throw ios_base::failure(err);
+        }
+
+        outputStream << MAGIC_STRING_T << endl;
+        outputStream << *this << endl;
+
+        outputStream.close();
+    } // mode = t
+       
 }
 
 
@@ -227,62 +264,50 @@ void Language::load(const char fileName[]){
     string tmp_magic_string;
     inputStream >> tmp_magic_string;
     
-    if (tmp_magic_string != MAGIC_STRING_T){
+    if (tmp_magic_string != MAGIC_STRING_T && tmp_magic_string != MAGIC_STRING_B){
         string err;
         err += "void Language::load(const char fileName[]) const\n";
-        err += "The MAGIC_STRING_T expected was " + MAGIC_STRING_T + "\n";
-        err += "The MAGIC_STRING_T recieved was " + tmp_magic_string + "\n";
+        err += "Invalid magic string.\n";
+        err += "The MAGIC_STRING recieved was " + tmp_magic_string + "\n";
         
         throw invalid_argument(err);
     }
     
-    
-    // Reads the language
-    inputStream >> _languageId;
-    
-    
-    // Reads the number of bigram_freq that are going to be given
-    int num_bigramFreqs;
-    inputStream >> num_bigramFreqs;
-    
-    if (num_bigramFreqs < 0){
-        string err;
-        err += "void Language::load(const char fileName[]) const\n";
-        err += "Invalid number of pairs of bigram and frequency: " + to_string(num_bigramFreqs)+"\n";
-        
-        throw out_of_range(err);
-    }
-    
-    // It saves memory for the array
-    deallocate();
-    allocate(num_bigramFreqs);
-    
-    
-    // Reads each bigram_freq
-    BigramFreq BigramFreq_aux;
-    Bigram Bigram_aux;
-    
-    
-    for (int i=0; i <num_bigramFreqs; i++){
-        
-        // Reads the bigram
-        inputStream >> Bigram_aux.at(0) >> Bigram_aux.at(1);
-        
-        // Reads the frequency
-        int frequency_tmp;
-        inputStream >> frequency_tmp;
-        
-        BigramFreq_aux.setFrequency(frequency_tmp);
-        BigramFreq_aux.setBigram(Bigram_aux);
-        
-        
-        // Adds the Bigram_Freq_aux
-        _vectorBigramFreq[i] = BigramFreq_aux;
-    }
-    
-    
-    // Closes the file
     inputStream.close();
+    
+    if (tmp_magic_string == MAGIC_STRING_T){
+        
+        inputStream.open(fileName, ios::in);
+
+        inputStream >> tmp_magic_string;
+        inputStream.ignore();
+        
+        inputStream >> *this;
+
+        inputStream.close();
+        
+    } // mode == t
+    
+    else if (tmp_magic_string == MAGIC_STRING_B){
+        
+        int nBigrams;
+        
+        inputStream.open(fileName, ios::in|ios::binary);
+
+        inputStream >> tmp_magic_string;
+        inputStream >> _languageId;
+        inputStream >> nBigrams;
+        inputStream.ignore(); // It jumps the last "\n"
+        
+        deallocate();
+        allocate(nBigrams);
+        
+        for (int i=0; i<nBigrams; i++)
+            this->at(i).deserialize(inputStream);
+        
+        inputStream.close();
+        
+    } // mode == t
     
 }
 
@@ -294,13 +319,13 @@ void Language::append(const BigramFreq& bigramFreq){
     if (index == -1){ // Not found
         
         reallocate(_size+1); // It saves memory for a new object
-        
-        _vectorBigramFreq[_size-1] = bigramFreq;
+        this->_vectorBigramFreq[_size - 1] = bigramFreq;
     }
     
     else { // Found
         
-        int new_frequency = _vectorBigramFreq[index].getFrequency() + bigramFreq.getFrequency();
+        int new_frequency = _vectorBigramFreq[index].getFrequency()
+                                + bigramFreq.getFrequency();
         _vectorBigramFreq[index].setFrequency(new_frequency);
     }
 }
@@ -342,32 +367,50 @@ void Language::join(const Language& language){
 
 void Language::allocate(int nElements){
     
-    _vectorBigramFreq = new BigramFreq[nElements];
-    _size = nElements;
+    _size = 0;
+    _vectorBigramFreq = nullptr;
+            
+    if (nElements > 0){
+        
+        _vectorBigramFreq = new BigramFreq[nElements];
+        _size = nElements;
+    }
 }
 
 
 void Language::deallocate(){
     
-    delete[] _vectorBigramFreq;
+    if (_size > 0)
+        delete[] _vectorBigramFreq;
+        
     _vectorBigramFreq = nullptr;
     _size = 0;
 }
 
 void Language::reallocate(int newSize){
-    
-    BigramFreq* aux = new BigramFreq[newSize];
-    
-    for(int i=0; i<newSize; i++)
-        aux[i] = _vectorBigramFreq[i];
-    
-    this->deallocate();
-    _vectorBigramFreq = aux;
-    _size = newSize;
+        
+    if (newSize>0){
+        
+        int min_size = _size < newSize ? _size : newSize;
+        
+        BigramFreq* aux = new BigramFreq[newSize];
+        for(int i=0; i<min_size; i++)
+            aux[i] = this->_vectorBigramFreq[i];
+            
+        this->deallocate();
+        this->_vectorBigramFreq = aux;
+        _size = newSize;
+        
+        aux = nullptr;
+        delete aux;
+    }
 }
 
 
 std::ostream& operator<<(std::ostream& os, const Language& language){
+    
+    
+    os << language.toString();
     
     return os;
 }
@@ -375,6 +418,44 @@ std::ostream& operator<<(std::ostream& os, const Language& language){
 
 std::istream& operator>>(std::istream& is, Language& language){
     
+    // Clears the language
+    language.deallocate();
+    
+    
+    std::string langId_aux;
+    // Reads the language
+    is >> langId_aux;
+    language.setLanguageId(langId_aux);
+    
+    
+    // Reads the number of bigram_freq that are going to be given
+    int num_bigramFreqs;
+    is >> num_bigramFreqs;
+    
+    if (num_bigramFreqs < 0){
+        string err;
+        err += "std::istream& operator>>(std::istream& is, Language& language)\n";
+        err += "Invalid number of pairs of bigram and frequency: " + to_string(num_bigramFreqs)+"\n";
+        
+        throw out_of_range(err);
+    }
+    
+    language.allocate(num_bigramFreqs);
+    
+    
+    // Reads each bigram_freq
+    BigramFreq BigramFreq_aux;
+    
+    
+    for (int i=0; i <num_bigramFreqs; i++){
+        
+        // Reads the bigram
+        is >> BigramFreq_aux;
+        
+        // Adds the Bigram_Freq_aux
+        language.at(i) = BigramFreq_aux;
+    }
+        
     return is;
 }
 

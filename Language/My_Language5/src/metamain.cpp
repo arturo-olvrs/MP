@@ -4,5 +4,6 @@
     #include "CLASSIFY.cpp"
 #elif JOIN
     #include "JOIN.cpp"
+#elif TESTS
+    #include "TESTS.cpp"
 #endif
-

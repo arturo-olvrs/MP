@@ -49,21 +49,39 @@ std::string BigramFreq::toString() const{
 
 void BigramFreq::serialize(std::ostream& outputStream) const{
     
+    this->getBigram().serialize(outputStream);
+    
+    outputStream.write(reinterpret_cast<const char*>(&_frequency), sizeof(int));
 }
 
 void BigramFreq::deserialize(std::istream& inputStream){
     
+    Bigram aux;
+    aux.deserialize(inputStream);
+    
+    this->setBigram(aux);
+    
+    inputStream.read(reinterpret_cast<char*>(&_frequency), sizeof(int));
 }
 
 
-
 std::ostream& operator<<(std::ostream& os, const BigramFreq& bigramFreq){
+    
+    os << bigramFreq.toString();
     
     return os;
 }
 
 
 std::istream& operator>>(std::istream& is, BigramFreq& bigramFreq){
+    
+    Bigram bgr_aux;
+    int freq_aux;
+    
+    is >> bgr_aux >> freq_aux;
+    
+    bigramFreq.setBigram(bgr_aux);
+    bigramFreq.setFrequency(freq_aux);
     
     return is;
 }
@@ -92,7 +110,7 @@ bool operator<(const BigramFreq& bigramFreq1, const BigramFreq& bigramFreq2){
 
 bool operator==(const BigramFreq& bigramFreq1, const BigramFreq& bigramFreq2){
     
-    return (bigramFreq1>bigramFreq2) && (bigramFreq1<bigramFreq2);
+    return !(bigramFreq1>bigramFreq2 || bigramFreq1<bigramFreq2);
 }
 
 

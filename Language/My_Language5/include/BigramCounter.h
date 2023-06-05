@@ -152,13 +152,21 @@ private:
      */
     void deallocate();
     
+    
+    /**
+     * Copies the content one BigranCounter into another
+     * @param orig
+     * @pre dinamic memory is already allocated
+     */
+    void copy(const BigramCounter& orig);
+    
     /*
      * Sets the _frequency matrix to zeros
      */
     void clean();
     
 
-private:
+public:
     int** _frequency; ///< 2D matrix with the frequency of each bigram
 
     /**

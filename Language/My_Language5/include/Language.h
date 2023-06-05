@@ -253,6 +253,10 @@ private:
      */
     void deallocate();
     
+public:
+    friend std::ostream& operator<<(std::ostream& os, const Language& language);
+    friend std::istream& operator>>(std::istream& is, Language& language);
+    
       
 private:
     std::string _languageId; ///< language identifier

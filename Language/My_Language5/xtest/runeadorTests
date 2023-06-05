@@ -1,0 +1,83 @@
+#!/bin/bash
+# La carpeta xtest se deberá copiar o mover a la carpeta MyLanguage5 donde debe de existir:
+# scripts/runTest.sh
+# tests/output/
+# xtest/
+# ../Books/2
+#
+# Posibles ejecuciones:
+# ./xtest/runeadorTests  // Ejecuta todos los tests que se encuentren en el directorio ./xtest
+# ./xtest/runeadorTests [DIRECTORIO]  // Ejecuta todos los tests que se encuentren en el directorio dado
+# ./xtest/runeadorTests <test_num.test> <test_num.test> <test_num.test> //Ejecuta todos los tests que se le han dado como argumentos. 
+#
+# El formato de un test debe ser:  test[0-9]+.test 
+
+
+if [[ $PWD =~ /xtest ]]; then
+	
+	cd ..
+fi
+
+EJECUTABLE=./scripts/runTest.sh
+
+if test -f $EJECUTABLE ; then
+
+	if [[ $# = 0 ]]; then
+		
+		DIR=./xtest
+		
+		for file in $(ls $DIR)
+		do
+			if [[ $file =~ ^\test[0-9]+.test$ ]]; then
+				$EJECUTABLE $DIR/$file
+			fi
+		done
+		
+	elif [[ $# = 1 ]]; then
+	
+		DIR=$1
+		
+		if test -d $1; then
+			for file in $(ls $DIR)
+			do
+				if [[ $file =~ ^\test[0-9]+.test$ ]]; then
+					$EJECUTABLE $DIR/$file
+				fi
+			done
+			
+		elif test -f $DIR; then
+			
+			echo $DIR
+			
+			if [[ $DIR =~ \test[0-9]+.test ]]; then
+				$EJECUTABLE $DIR
+			fi
+			
+		else
+			echo "$DIR no es un test ni un directorio"
+	
+		fi
+	
+	else 
+			
+		for file in $@
+		do
+			$EJECUTABLE $file
+		done
+	fi
+	
+else
+	echo "No se encuentra el ejecutable"
+fi
+
+# echo "RUNEADOR DONE"
+
+echo '  _____  _    _ _   _ ______          _____   ____  _____           _____   ____  _   _ ______  '
+echo ' |  __ \| |  | | \ | |  ____|   /\   |  __ \ / __ \|  __ \         |  __ \ / __ \| \ | |  ____| '
+echo ' | |__) | |  | |  \| | |__     /  \  | |  | | |  | | |__) |        | |  | | |  | |  \| | |__    '
+echo ' |  _  /| |  | | . ` |  __|   / /\ \ | |  | | |  | |  _  /         | |  | | |  | | . ` |  __|   '
+echo ' | | \ \| |__| | |\  | |____ / ____ \| |__| | |__| | | \ \         | |__| | |__| | |\  | |____  '
+echo ' |_|  \_\\____/|_| \_|______/_/    \_\_____/ \____/|_|  \_\        |_____/ \____/|_| \_|______| '
+echo ""
+echo ' J.Munvel Copyright© All Rights Reserved '
+echo " "

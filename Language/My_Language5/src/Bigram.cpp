@@ -78,10 +78,13 @@ void Bigram::toUpper(){
 
 void Bigram::serialize(std::ostream& outputStream) const{
     
+    outputStream.write(_text, 2*sizeof(char));
+    
 }
 
 void Bigram::deserialize(std::istream& inputStream){
     
+    inputStream.read(_text, 2*sizeof(char));
 }
 
 
@@ -94,11 +97,15 @@ bool isValidCharacter(char character, const std::string& validCharacters){
 
 std::ostream& operator<<(std::ostream& os, const Bigram& bigram){
     
+    os << bigram.getText();
+    
     return os;
 }
 
 
 std::istream& operator>>(std::istream& is, Bigram& bigram){
+    
+    is >> bigram.at(0) >> bigram.at(1);
     
     return is;
 }

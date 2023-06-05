@@ -1,0 +1,6 @@
+%%%CALL -b -l spanish -o tests/output/spanish_binary.bgr ../Books/quijote.txt ../Books/fortunata.txt
+%%%VALGRIND
+%%%DESCRIPTION Learn spanish language in binary format from quijote.txt and fortunata.txt books [LEARN -b -l spanish -o tests/output/spanish_binary.bgr ../Books/quijote.txt ../Books/fortunata.txt]
+%%%RELEASE LEARN
+%%%FROMFILE tests/output/spanish_binary.bgr
+%%%OUTPUT

@@ -12,6 +12,7 @@
 
 #include <cstring>
 #include "BigramCounter.h"
+
 using namespace std;
 
 
@@ -41,6 +42,7 @@ void showEnglishHelp(ostream& outputStream) {
  */
 int main(int argc, char *argv[]) {
     
+    
     if (argc <=2){ // Not enough parameters
         showEnglishHelp(cerr);
         return 1;
@@ -48,13 +50,14 @@ int main(int argc, char *argv[]) {
     
     
     int num_file = 1;
-    
+        
     BigramCounter builder;
+    
     builder.calculateFrequencies(argv[num_file++]);
     
-    Language to_classify;
-    to_classify = builder.toLanguage();
-    
+    Language to_classify = builder.toLanguage();
+    // std::cout << to_classify << std::endl;
+   
     
     // Impossible values to search for the min
     int num_lang_detected = -1;
@@ -66,9 +69,11 @@ int main(int argc, char *argv[]) {
     // Iterate over each file
     for (num_file; num_file < argc; num_file++){
         
-        aux.load(argv[num_file]);
-        double distance = to_classify.getDistance(aux);
         
+        aux.load(argv[num_file]);
+        // std::cout << aux << std::endl;
+        
+        double distance = to_classify.getDistance(aux);        
         
         // If found a new min, it is updated
         if (distance < min_distance){

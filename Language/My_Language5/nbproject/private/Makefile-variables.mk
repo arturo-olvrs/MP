@@ -8,3 +8,4 @@
 # LEARN configuration
 # JOIN configuration
 # CLASSIFY configuration
+# TESTS configuration

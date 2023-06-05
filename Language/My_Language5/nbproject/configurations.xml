@@ -19,9 +19,6 @@
       <itemPath>src/Bigram.cpp</itemPath>
       <itemPath>src/BigramCounter.cpp</itemPath>
       <itemPath>src/BigramFreq.cpp</itemPath>
-      <itemPath>src/CLASSIFY.cpp</itemPath>
-      <itemPath>src/JOIN.cpp</itemPath>
-      <itemPath>src/LEARN.cpp</itemPath>
       <itemPath>src/Language.cpp</itemPath>
       <itemPath>src/metamain.cpp</itemPath>
     </logicalFolder>
@@ -70,12 +67,6 @@
       </item>
       <item path="src/BigramFreq.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/CLASSIFY.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/JOIN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/LEARN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="src/Language.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/metamain.cpp" ex="false" tool="1" flavor2="0">
@@ -116,12 +107,6 @@
       </item>
       <item path="src/BigramFreq.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/CLASSIFY.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/JOIN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/LEARN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="src/Language.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/metamain.cpp" ex="false" tool="1" flavor2="0">
@@ -158,12 +143,6 @@
       <item path="src/BigramCounter.cpp" ex="false" tool="1" flavor2="11">
       </item>
       <item path="src/BigramFreq.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/CLASSIFY.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/JOIN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/LEARN.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Language.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -202,12 +181,6 @@
       </item>
       <item path="src/BigramFreq.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/CLASSIFY.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/JOIN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/LEARN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="src/Language.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/metamain.cpp" ex="false" tool="1" flavor2="11">
@@ -245,15 +218,43 @@
       </item>
       <item path="src/BigramFreq.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/CLASSIFY.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/JOIN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/LEARN.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="src/Language.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/metamain.cpp" ex="false" tool="1" flavor2="11">
+      </item>
+    </conf>
+    <conf name="TESTS" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>11</standard>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+          <commandLine>-D TESTS</commandLine>
+        </ccTool>
+      </compileType>
+      <item path="include/Bigram.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/BigramCounter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/BigramFreq.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Language.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Bigram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/BigramCounter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/BigramFreq.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Language.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/metamain.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

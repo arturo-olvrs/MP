@@ -55,13 +55,19 @@ int main(int argc, char *argv[]) {
     
     bool opt_twice = false; // Flag. Checks if an option has been used twice
     bool not_enough_params = false; // Flag. Checks that there are enough parameters.
+    bool incorrect_option = false; // Flag. Checks that no incorrect option has been given.
     
     // Flags for options already used;
     bool bt_opt = false;
     bool name_opt = false;
     bool language_opt = false;
     
-    while (argv[num_param][0] == '-' && !opt_twice && !not_enough_params){
+    // At least there is one file
+    not_enough_params = argc <= num_param;
+    
+    // While all the flags are correct and the next parameter is an option...
+    while (!opt_twice && !not_enough_params && !incorrect_option
+             && argv[num_param][0] == '-'){
         
         // The next parameter must exist. At the end, it will be, at least, a file.
         not_enough_params = argc <= num_param+1;
@@ -106,12 +112,15 @@ int main(int argc, char *argv[]) {
             else opt_twice = true;
         } // laguage_opt checked
         
+        else
+            incorrect_option = true;
+        
         
     } // options checked.   while (argv[num_param][0] == '-' && !opt_twice && !not_enough_params)
     
     
     
-    if (opt_twice || not_enough_params){
+    if (opt_twice || not_enough_params || incorrect_option){
         showEnglishHelp(cerr);
         return 1;
     }
@@ -130,6 +139,8 @@ int main(int argc, char *argv[]) {
         builder.calculateFrequencies(argv[num_file]);
         lang += builder.toLanguage();
     }
+    
+    lang.sort();
     
     lang.save(output.c_str(), mode);
     
