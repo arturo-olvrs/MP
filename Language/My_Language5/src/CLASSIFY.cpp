@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
     
     // Impossible values to search for the min
     int num_lang_detected = -1;
-    double min_distance = 2; // Distance $\in [0,1]$
+    double min_distance = 9999; //
     std::string lang_detected = "unknown";
     
     Language aux;
