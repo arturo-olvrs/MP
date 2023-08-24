@@ -1,6 +1,0 @@
-%%%CALL ../Books/Die_Verwandlung.Franz_Kafka.German.txt ../Books/changedMan.bgr ../Books/lesMiserables.bgr ../Books/fortunata.bgr ../Books/aliceWonderBinary.bgr
-%%%VALGRIND
-%%%DESCRIPTION Classify Die_Verwandlung.Franz_Kafka.German.txt book using binary and non-binary files [CLASSIFY ../Books/Die_Verwandlung.Franz_Kafka.German.txt ../Books/changedMan.bgr ../Books/lesMiserables.bgr ../Books/fortunata.bgr ../Books/aliceWonderBinary.bgr]
-%%%RELEASE CLASSIFY
-%%%OUTPUT
-Final decision: language english with a distance of 0.238421
