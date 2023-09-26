@@ -5,7 +5,7 @@ Repositorio de las prácticas de la asignatura Metodología de la Programación.
 - **Curso Académico:** 2022-23.
 - **Grado:** Doble Grado en Ingeniería Informática y Matemáticas.
 - **Grupo:** Único.
-<!-- - **Profesor:** Andrés . -->
+- **Profesor:** Andrés Cano Utrera.
 <!-- - **Descripción:** Examen de Prácticas del Módulo I (Prácticas 1-4). -->
 <!-- - **Fecha:** 18 de abril de 2023. -->
 <!-- - **Duración:** -->
